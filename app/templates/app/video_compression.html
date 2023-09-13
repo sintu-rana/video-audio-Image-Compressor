@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Video Compression</title>
+</head>
+<body>
+    <div class=" w-50 m-auto p-4 bg-light ">
+    <h1 class="text-center m-4 bg-info">Video Compression</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="video_file">Upload a video file:</label>
+        <input type="file" name="video_file" accept=".mp4">
+        <button type="submit">Compress Video</button>
+    </form>
+    <br>
+    {% if compressed_video_url %}
+    <p>Compression Result:</p>
+    <video width="640" height="480" controls>
+        <source src="{{ compressed_video_url }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <br>
+    <a href="{{ compressed_video_url }}" download>Download Compressed Video</a>
+    {% endif %}
+
+</div>
+
+</body>
+</html>

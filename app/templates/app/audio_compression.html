@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Audio Compression</title>
+</head>
+<body>
+    <div class=" w-50 m-auto p-4 bg-light ">
+    <h1 class="text-center m-4 bg-info">Audio Compression</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="audio_file">Upload an audio file:</label>
+        <input type="file" name="audio_file" accept=".mp3, .wav">
+        <button type="submit">Compress Audio</button>
+    </form>
+    <br>
+    {% if compressed_audio_url %}
+    <p>Compression Result:</p>
+    <audio controls>
+        <source src="{{ compressed_audio_url }}" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <br>
+    <a href="{{ compressed_audio_url }}" download>Download Compressed Audio</a>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
